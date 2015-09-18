@@ -1,15 +1,18 @@
-import argparse
-import re
 import pkg_resources
+import argparse
+import logging
+import textwrap
+import os
 import sys
-
+from string import join
+import megdc
 
 __header__ = textwrap.dedent("""
    
-    Megam System
+    Megam System  megdc-%s
 
 Full documentation can be found at: http://docs.megam.io
-""" % ceph_deploy.__version__)
+""" % megdc.__version__)
 
 
 def log_flags(args, logger=None):
@@ -116,7 +119,7 @@ def _main(args=None, namespace=None):
     # the one flag that will never work regardless of the config settings is
     # logging because we cannot set it before hand since the logging config is
     # not ready yet. This is the earliest we can do.
-    args = ceph_deploy.conf.cephdeploy.set_overrides(args)
+    args = megdc.conf.megdc.set_overrides(args)
 
     LOG.info("Invoked (%s): %s" % (
         ceph_deploy.__version__,
@@ -144,8 +147,4 @@ def main(args=None, namespace=None):
             except:
                 pass
 
-parser=get_parser()
 
-if len(sys.argv) < 2:
-   parser.print_help()
-   sys.exit()
