@@ -1,15 +1,18 @@
-import argparse
-import re
 import pkg_resources
+import argparse
+import logging
+import textwrap
+import os
 import sys
-
+from string import join
+import megdc
 
 __header__ = textwrap.dedent("""
    
-    Megam System
+    Megam System  megdc-%s
 
 Full documentation can be found at: http://docs.megam.io
-""" % ceph_deploy.__version__)
+""" % megdc.__version__)
 
 
 def log_flags(args, logger=None):
