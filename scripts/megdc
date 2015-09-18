@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+import os
+import platform
+import sys
+"""
+megdc - admin tool for megam
+"""
+
+if os.path.exists('/usr/share/pyshared/megdc'):
+    sys.path.insert(0,'/usr/share/pyshared/megdc')
+elif os.path.exists('/usr/share/megdc'):
+    sys.path.insert(0,'/usr/share/megdc')
+elif os.path.exists('/usr/share/pyshared/megdc'):
+    sys.path.insert(0,'/usr/share/pyshared/megdc')
+elif os.path.exists('/usr/lib/python2.6/site-packages/megdc'):
+    sys.path.insert(0,'/usr/lib/python2.6/site-packages/megdc')
+
+from megdc.cib import main
+
+
+if __name__ == '__main__':
+   sys.exit(main())   
