@@ -1,0 +1,9 @@
+  * New upstream release
+
+ -- Gary Lowell <gary.lowell@inktank.com>  Fri, 24 May 2013 11:57:40 +0800
+
+ceph-deploy (0.0.1-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Gary Lowell <gary.lowell@inktank.com>  Mon, 10 Mar 2013 18:38:40 +0800
