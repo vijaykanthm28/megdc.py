@@ -4,8 +4,10 @@ import logging
 import textwrap
 import os
 import sys
-from string import join
 import megdc
+
+from string import join
+
 
 __header__ = textwrap.dedent("""
    
@@ -26,7 +28,7 @@ def log_flags(args, logger=None):
 
 
 def get_parser():
-
+   print "get_parser enterd"
    parser = argparse.ArgumentParser(
         prog='megdc',
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -35,7 +37,7 @@ def get_parser():
    parser.add_argument(
         '--version',
         action='version',
-        version='%s' % __version__,
+        version='%s' % megdc. __version__,
         help='the current installed version of megdc',
         )
    
@@ -45,12 +47,18 @@ def get_parser():
         metavar='COMMAND',
         help='description',
         )
-   
-   entry_points = [
-        (ep.name, ep.load())
-        for ep in pkg_resources.iter_entry_points('megdc.cib')
-        ]
-   entry_points.sort(
+   print "cmd"   
+   entry_p = {}
+   for ep in pkg_resources.iter_entry_points(group='megdc.cib',name= None) :
+        print "1"
+        if not entry_p.has_key(ep.dist):
+           print "2"
+           entry_p[ep.dist] = {}
+        entry_p.update([eb.name])
+        print ep.name 
+        print ep.dist
+        
+   entry_p.sort(
         key=lambda (name, fn): getattr(fn, 'priority', 100),
         )
    for (name, fn) in entry_points:
@@ -74,7 +82,7 @@ def get_parser():
 
 #@catches((KeyboardInterrupt, RuntimeError, exc.DeployError,), handle_all=True)
 def _main(args=None, namespace=None):
-    # Set console logging first with some defaults, to prevent having exceptions
+    '''    # Set console logging first with some defaults, to prevent having exceptions
     # before hitting logging configuration. The defaults can/will get overridden
     # later.
 
@@ -89,7 +97,7 @@ def _main(args=None, namespace=None):
 
     # allow all levels at root_logger, handlers control individual levels
     root_logger.setLevel(logging.DEBUG)
-    root_logger.addHandler(sh)
+    root_logger.addHandler(sh)'''
 
     parser = get_parser()
     if len(sys.argv) <= 2:
@@ -97,8 +105,8 @@ def _main(args=None, namespace=None):
         sys.exit()
     else:
         args = parser.parse_args(args=args, namespace=namespace)
-
-    console_loglevel = logging.DEBUG  # start at DEBUG for now
+    
+    ''' console_loglevel = logging.DEBUG  # start at DEBUG for now
     if args.quiet:
         console_loglevel = logging.WARNING
     if args.verbose:
@@ -119,19 +127,20 @@ def _main(args=None, namespace=None):
     # the one flag that will never work regardless of the config settings is
     # logging because we cannot set it before hand since the logging config is
     # not ready yet. This is the earliest we can do.
-    args = megdc.conf.megdc.set_overrides(args)
+    #args = megdc.conf.megdc.set_overrides(args)
 
     LOG.info("Invoked (%s): %s" % (
         ceph_deploy.__version__,
         join(sys.argv, " "))
     )
     log_flags(args)
-
+    '''
     return args.func(args)
 
 
 def main(args=None, namespace=None):
     try:
+        print "hai"
         _main(args=args, namespace=namespace)
     finally:
         # This block is crucial to avoid having issues with

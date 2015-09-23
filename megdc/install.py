@@ -181,6 +181,7 @@ def make(parser):
     """
     Install Ceph packages on remote hosts.
     """
+    print " hai "
     version = parser.add_mutually_exclusive_group()
     # XXX deprecated in favor of release
     version.add_argument(

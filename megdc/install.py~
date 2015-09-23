@@ -116,13 +116,6 @@ def install(args):
         rlogger = logging.getLogger(hostname)
         rlogger.info('installing megam cloud on %s' % hostname)
 
-        """cd_conf = getattr(args, 'cd_conf', None)
-
-        # custom repo arguments
-        #repo_url = os.environ.get('CEPH_DEPLOY_REPO_URL') or args.repo_url
-        #gpg_url = os.environ.get('CEPH_DEPLOY_GPG_URL') or args.gpg_url
-        gpg_fallback = gpg.url('release')"""
-
         # otherwise a normal installation
             distro.install(
                 distro,
@@ -188,6 +181,7 @@ def make(parser):
     """
     Install Ceph packages on remote hosts.
     """
+    print " hai "
     version = parser.add_mutually_exclusive_group()
     # XXX deprecated in favor of release
     version.add_argument(
