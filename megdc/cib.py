@@ -10,7 +10,7 @@ from string import join
 
 
 __header__ = textwrap.dedent("""
-   
+
     Megam System  megdc-%s
 
 Full documentation can be found at: http://docs.megam.io
@@ -40,14 +40,14 @@ def get_parser():
         version='%s' % megdc. __version__,
         help='the current installed version of megdc',
         )
-   
+
 # create the top-level parser
    sub = parser.add_subparsers(
         title='commands',
         metavar='COMMAND',
         help='description',
         )
-   print "cmd"   
+   print "cmd"
    entry_p = {}
    for ep in pkg_resources.iter_entry_points(group='megdc.cib',name= None) :
         print "1"
@@ -55,9 +55,9 @@ def get_parser():
            print "2"
            entry_p[ep.dist] = {}
         entry_p.update({eb.name:ep.load()})
-        print ep.name 
+        print ep.name
         print ep.dist
-        
+
    entry_p.sort(
         key=lambda (name, fn): getattr(fn, 'priority', 100),
         )
@@ -67,7 +67,7 @@ def get_parser():
             description=fn.__doc__,
             help=fn.__doc__,
             )
-        
+
         # flag if the default release is being used
         p.set_defaults(default_release=False)
         fn(p)
@@ -105,7 +105,7 @@ def _main(args=None, namespace=None):
         sys.exit()
     else:
         args = parser.parse_args(args=args, namespace=namespace)
-    
+
     ''' console_loglevel = logging.DEBUG  # start at DEBUG for now
     if args.quiet:
         console_loglevel = logging.WARNING
@@ -130,7 +130,7 @@ def _main(args=None, namespace=None):
     #args = megdc.conf.megdc.set_overrides(args)
 
     LOG.info("Invoked (%s): %s" % (
-        ceph_deploy.__version__,
+        megdc.__version__,
         join(sys.argv, " "))
     )
     log_flags(args)
@@ -155,5 +155,3 @@ def main(args=None, namespace=None):
                 sys.stderr.close()
             except:
                 pass
-
-

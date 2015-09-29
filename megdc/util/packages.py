@@ -54,7 +54,7 @@ class Ceph(object):
     def version(self):
         """
         Return a version object (see
-        :mod:``ceph_deploy.util.versions.NormalizedVersion``)
+        :mod:``megdc.util.versions.NormalizedVersion``)
         """
         return versions.parse_version(self._get_version_output)
 
