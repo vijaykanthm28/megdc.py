@@ -1,5 +1,0 @@
-include *.rst
-include LICENSE
-include scripts/megdc
-
-
