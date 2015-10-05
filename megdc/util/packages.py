@@ -1,6 +1,6 @@
-from ceph_deploy.exc import ExecutableNotFound
-from ceph_deploy.util import system, versions
-from ceph_deploy.lib import remoto
+from megdc.exc import ExecutableNotFound
+from megdc.util import system, versions
+from megdc.lib import remoto
 
 
 class Ceph(object):

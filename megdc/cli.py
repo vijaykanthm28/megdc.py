@@ -6,7 +6,6 @@ import os
 import sys
 import megdc
 
-from string import join
 
 
 __header__ = textwrap.dedent("""
@@ -28,11 +27,10 @@ def log_flags(args, logger=None):
 
 
 def get_parser():
-   print "get_parser enterd"
    parser = argparse.ArgumentParser(
         prog='megdc',
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        description='Easy Megam cloud platform \n\n%s' % __header__,
+        description='Datacenter ready in minutes \n\n%s' % __header__,
         )
    parser.add_argument(
         '--version',
@@ -47,20 +45,18 @@ def get_parser():
         metavar='COMMAND',
         help='description',
         )
-   print "cmd"
    entry_p = {}
+<<<<<<< HEAD:megdc/cli.py
    for ep in pkg_resources.iter_entry_points(group='megdc.cli',name= None) :
         print "1"
+=======
+   for ep in pkg_resources.iter_entry_points(group='megdc.cib',name= None) :
+>>>>>>> origin/master:megdc/cli.py
         if not entry_p.has_key(ep.dist):
-           print "2"
            entry_p[ep.dist] = {}
         entry_p.update({eb.name:ep.load()})
-        print ep.name
-        print ep.dist
-
-   entry_p.sort(
-        key=lambda (name, fn): getattr(fn, 'priority', 100),
-        )
+        logger.info('dist -=> %s', ep.dist)
+   entry_p.sort(key = lambda name, fn : getattr(fn, 'priority', 100))
    for (name, fn) in entry_points:
         p = sub.add_parser(
             name,
@@ -140,7 +136,6 @@ def _main(args=None, namespace=None):
 
 def main(args=None, namespace=None):
     try:
-        print "hai"
         _main(args=args, namespace=namespace)
     finally:
         # This block is crucial to avoid having issues with
