@@ -43,9 +43,8 @@ setup(
         ],
 
         'megdc.cli': [
-            'new = megdc.new:make',
-            'install = megdc.install:make',
             'megam = megdc.megam:make',
+            'new = megdc.new:make',
             'one = megdc.one:make',
             'ceph = megdc.ceph:make',
         ],

@@ -46,6 +46,8 @@ To get the source tree ready for use, run this once::
 
   virtualenv venv
 
+  . venv/bin/activate
+
   python setup.py install
 
   megdc
