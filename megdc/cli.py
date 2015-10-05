@@ -49,7 +49,7 @@ def get_parser():
         )
    print "cmd"
    entry_p = {}
-   for ep in pkg_resources.iter_entry_points(group='megdc.cib',name= None) :
+   for ep in pkg_resources.iter_entry_points(group='megdc.cli',name= None) :
         print "1"
         if not entry_p.has_key(ep.dist):
            print "2"
