@@ -38,17 +38,15 @@ setup(
     ],
 
     entry_points={
-
         'console_scripts': [
             'megdc = megdc.cli:main',
         ],
 
         'megdc.cli': [
-            'new = megdc.new:make',
             'megam = megdc.megam:make',
             'one = megdc.one:make',
             'ceph = megdc.ceph:make',
-        ],
+        ],      
 
     },
 )
